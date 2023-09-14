@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta Personalizada</title>
+</head>
+<body>
+    <h1>Encuesta Personalizada</h1>
+    <form id="survey-form" action="/enviar-respuesta" method="POST">
+    <!-- ... Tus preguntas ... -->
+    <button type="submit">Enviar</button>
+</form>
+
+
+    <script>
+        // Parsear el JSON y obtener las preguntas
+        const surveyData = {
+            "items": [
+                {
+                    "type": "text",
+                    "label": "Nombre completo",
+                    "name": "full_name",
+                    "required": true
+                },
+                {
+                    "type": "tel",
+                    "label": "Número de teléfono",
+                    "name": "phone_number",
+                    "required": true
+                },
+                {
+                    "type": "date",
+                    "label": "Fecha de inicio",
+                    "name": "start_date",
+                    "required": false
+                },
+                {
+                    "type": "select",
+                    "label": "¿Cuál es tu idioma preferido?",
+                    "name": "preferred_language",
+                    "options": [
+                        {
+                            "label": "Inglés",
+                            "value": "english"
+                        },
+                        {
+                            "label": "Español",
+                            "value": "spanish"
+                        },
+                        {
+                            "label": "Francés",
+                            "value": "french"
+                        },
+                        {
+                            "label": "Alemán",
+                            "value": "german"
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "type": "radio",
+                    "label": "¿Cómo nos encontraste?",
+                    "name": "how_found",
+                    "options": [
+                        {
+                            "label": "Amigos",
+                            "value": "friends"
+                        },
+                        {
+                            "label": "Búsqueda en línea",
+                            "value": "online_search"
+                        },
+                        {
+                            "label": "Publicidad",
+                            "value": "advertisement"
+                        }
+                    ],
+                    "required": true
+                },
+                {
+                    "type": "checkbox",
+                    "label": "¿Desea recibir nuestro boletín informativo?",
+                    "name": "newsletter_subscription",
+                    "required": false
+                },
+                {
+                    "type": "submit",
+                    "label": "Enviar"
+                }
+            ]
+        };
+
+        const questionsContainer = document.getElementById('questions-container');
+        const surveyForm = document.getElementById('survey-form');
+
+        // Función para generar preguntas según el JSON
+        function generateQuestions() {
+            surveyData.items.forEach(item => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+
+                // Resto del código para generar las preguntas
+                // (lo que ya tenías está correcto)
+            });
+        }
+
+        surveyForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // Aquí puedes recopilar las respuestas y enviarlas al servidor
+            const formData = new FormData(surveyForm);
+            const answers = {};
+            formData.forEach((value, key) => {
+                answers[key] = value;
+            });
+
+            // Envía las respuestas al servidor o a tu base de datos
+            console.log(answers);
+        });
+
+        generateQuestions();
+    </script>
+</body>
+</html>
+
+</body>
+</html>
